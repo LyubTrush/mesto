@@ -9,3 +9,10 @@
     padding: 0;
     max-height: 23px;
 }
+
+@media screen and (max-width: 378px) {
+    .footer__text {
+        font-size: 14px;
+        line-height: 17px;
+    }
+}

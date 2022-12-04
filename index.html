@@ -82,10 +82,21 @@
             <button class="popup__btn-close"></button>
             <h2 class="popup__text-profile">Редактировать профиль</h2>
             <forma id="" class="popup__forma-profile">
-                <input type="text" placeholder="Жак-Ив Кусто" class="popup__imput-profile">
-                <input type="text" placeholder="Исследователь океана" class="popup__imput-profile">
+                <input 
+                type="text" 
+                placeholder="Введите имя" 
+                value=""
+                minlength="4" 
+                maxlength="15" 
+                class="popup__imput-profile popup__imput-profile_name">
+                <input 
+                type="text" 
+                placeholder="Чем занимаетесь?" 
+                minlength="4" 
+                maxlength="15" 
+                class="popup__imput-profile popup__imput-profile_prof">
             </forma>
-            <button class="popup__btn-save-profile">Сохранить</button>
+            <button type="submit" class="popup__btn-save-profile">Сохранить</button>
         </div>
     </div>
 </div>

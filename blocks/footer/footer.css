@@ -4,3 +4,10 @@
     margin: 0;
     color: #545454;
 }
+
+@media screen and (max-width: 378px) {
+    .footer {
+        padding-top: 48px;
+        padding-bottom: 36px;
+    }
+}

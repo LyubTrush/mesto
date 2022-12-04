@@ -2,4 +2,13 @@
     width: 22px;
     height: 19px;
     background-image: url(../../../images/heart.svg);
+    cursor: pointer;
+}
+
+.element__info-heart:hover {
+    opacity: 0.5;
+}
+.element__info-heart:active {
+    background-image: url(../../../images/heart_hover.svg);
+    opacity: 1;
 }
