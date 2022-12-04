@@ -1,0 +1,14 @@
+.popup__forma-profile {
+    display: flex;
+    height: 84px;
+    flex-direction: column;
+    align-items: center;
+    justify-content:space-between;
+    margin-top: 54px;
+}
+
+@media screen and (max-width: 671px) {
+    .popup__forma-profile {
+        margin-top: 75px;
+    }
+}

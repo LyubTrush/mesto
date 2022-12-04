@@ -1,0 +1,23 @@
+.popup__imput-profile {
+    width: 358px;
+    height: 27px;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    font-family: 'Inter';
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px; 
+    
+}
+
+.popup__imput-profile:focus {
+    outline: none;
+}
+
+@media screen and (max-width: 671px) {
+    .popup__imput-profile {
+        width: 238px;
+        height: 27px;
+    }
+}
+

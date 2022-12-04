@@ -1,0 +1,23 @@
+.profile__avatar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-right: 18px;
+}
+
+@media screen and (max-width: 671px) {
+    .profile__avatar {
+       width: 282px;
+       flex-direction: column;
+       justify-content: center;
+       align-items: center;
+       padding-right: 0px;
+       gap: 26px;
+    }
+}
+
+@media screen and (max-width: 378px) {
+    .profile__avatar {
+       
+    }
+}
