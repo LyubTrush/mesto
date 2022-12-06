@@ -11,15 +11,13 @@
 
 @media screen and (max-width: 671px) {
     .profile__info-edit {
-       
-       
+        gap: 10px;
+        width: 217px;
+        padding-left: 23px;
     }
 }
 
 @media screen and (max-width: 378px) {
     .profile__info-edit {
-    gap: 10px;
-    width: 217px;
-    padding-left: 23px;
     }
 }

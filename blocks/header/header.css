@@ -5,13 +5,12 @@
     padding-top: 45px;
     max-width: 880px;
     margin: 0 auto;
-    padding: 45px 45px 0;
 }
 
-@media screen and (max-width: 671px) {
+@media screen and (max-width: 970px) {
     .header {
        min-height: 56px;
-       
+       padding: 45px 45px 0;
        
     }
 }

@@ -3,9 +3,8 @@ let openPopupProfile = document.querySelector('.profile__button-edit');
 let closePopupProfile = document.querySelector('.popup__btn-close');
 let popupProfile = document.querySelector('.popup');
 let formaPopup = popupProfile.querySelector('.popup__forma');
-let namePopupInput = formaPopup.querySelector('.popup__input_name');
-let profPopupInput = formaPopup.querySelector('.popup__input_prof');
-let savePopupButton = popupProfile.querySelector('.popup__btn-save-profile')
+let namePopupInput = formaPopup.querySelector('.popup__name');
+let profPopupInput = formaPopup.querySelector('.popup__prof');
 let nameProfile = document.querySelector('.profile__info-title');
 let profProfile = document.querySelector('.profile__info-subtitle');
 
