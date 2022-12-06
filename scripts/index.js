@@ -2,9 +2,9 @@
 let openPopupProfile = document.querySelector('.profile__button-edit');
 let closePopupProfile = document.querySelector('.popup__btn-close');
 let popupProfile = document.querySelector('.popup');
-let formaPopup = popupProfile.querySelector('.popup__forma-profile');
-let namePopapInput = formaPopup.querySelector('.popup__imput-profile_name');
-let profPopupInput = formaPopup.querySelector('.popup__imput-profile_prof');
+let formaPopup = popupProfile.querySelector('.popup__forma');
+let namePopupInput = formaPopup.querySelector('.popup__input_name');
+let profPopupInput = formaPopup.querySelector('.popup__input_prof');
 let savePopupButton = popupProfile.querySelector('.popup__btn-save-profile')
 let nameProfile = document.querySelector('.profile__info-title');
 let profProfile = document.querySelector('.profile__info-subtitle');
@@ -12,20 +12,20 @@ let profProfile = document.querySelector('.profile__info-subtitle');
 
 
 openPopupProfile.addEventListener('click', function() {
-    popupProfile.classList.add('popup__active');
-    namePopapInput.value = nameProfile.textContent;
+    popupProfile.classList.add('popup_opened');
+    namePopupInput.value = nameProfile.textContent;
     profPopupInput.value = profProfile.textContent;
 });
-
-closePopupProfile.addEventListener('click', function() {
-    popupProfile.classList.remove('popup__active');
-});
+function close() {
+    popupProfile.classList.remove('popup_opened');
+}
+closePopupProfile.addEventListener('click', close); 
 
 function save(evt) {
     evt.preventDefault();
-    nameProfile.textContent = namePopapInput.value;
+    nameProfile.textContent = namePopupInput.value;
     profProfile.textContent = profPopupInput.value;
-    popupProfile.classList.remove('popup__active');
+    close();
 }
 
-savePopupButton.addEventListener( 'click', save);
+formaPopup.addEventListener( 'submit', save);

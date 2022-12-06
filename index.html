@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script async src="./scripts/index.js"></script>
     <link rel="stylesheet" href="./pages/index.css">
     <title>Место - проект для ЯП</title>
 </head>
@@ -15,8 +14,8 @@
       </header>
     <main class="content">
       <section class="profile">
-        <div class="profile__avatar">
-            <img class="profile__avatar-image" src="./images/Avatar.png" alt="">
+        <div class="profile__block">
+            <img class="profile__avatar-image" src="./images/Avatar.png" alt="аватар">
             <div class="profile__info">
               <div class="profile__info-edit">
                 <h1 class="profile__info-title">Жак-Ив Кусто</h1>
@@ -30,76 +29,74 @@
 
       <section class="elements">
         <div class="element">
-            <img src="./images/karachaevo_el.png" alt="foto">
+            <img src="./images/karachaevo_el.png" alt="фото природы">
             <div class="element__info">
                 <h2 class="element__info-text">Карачаевск</h2>
-                <div class="element__info-heart"></div>
+                <button type="button" class="element__info-heart"></button>
             </div>
         </div>
         <div class="element">
-            <img src="./images/elbrus_el.png" alt="foto">
+            <img src="./images/elbrus_el.png" alt="фото природы">
             <div class="element__info">
                 <h2 class="element__info-text">Гора Эльбрус</h2>
-                <div class="element__info-heart"></div>
+                <button type="button" class="element__info-heart"></button>
             </div>
         </div>
         <div class="element">
-            <img src="./images/dombai_el.png" alt="foto">
+            <img src="./images/dombai_el.png" alt="фото природы">
             <div class="element__info">
                 <h2 class="element__info-text">Домбай</h2>
-                <div class="element__info-heart"></div>
+                <button type="button" class="element__info-heart"></button>
             </div>
         </div>
         <div class="element">
-            <img src="./images/elbrus_el.png" alt="foto">
+            <img src="./images/elbrus_el.png" alt="фото природы">
             <div class="element__info">
                 <h2 class="element__info-text">Гора Эльбрус</h2>
-                <div class="element__info-heart"></div>
+                <button type="button" class="element__info-heart"></button>
             </div>
         </div>
         <div class="element">
-            <img src="./images/dombai_el.png" alt="foto">
+            <img src="./images/dombai_el.png" alt="фото природы">
             <div class="element__info">
                 <h2 class="element__info-text">Домбай</h2>
-                <div class="element__info-heart"></div>
+                <button type="button" class="element__info-heart"></button>
             </div>
         </div>
         <div class="element">
-            <img src="./images/karachaevo_el.png" alt="foto">
+            <img src="./images/karachaevo_el.png" alt="фото природы">
             <div class="element__info">
                 <h2 class="element__info-text">Карачаево-Черкессия</h2>
-                <div class="element__info-heart"></div>
+                <button type="button" class="element__info-heart"></button>
             </div>
         </div>
       </section>
-      <footer class="footer">
-        <p class="footer__text">&copy; 2020 Mesto Russia</p>
-      </footer>
     </main>
+    <footer class="footer">
+        <p class="footer__text">&copy; 2020 Mesto Russia</p>
+    </footer>
 <div class="popup">
     <div class="popup__container">
-        <section class="popup__body">
-            <button class="popup__btn-close"></button>
+            <button type="button" class="popup__btn-close"></button>
             <h2 class="popup__text-profile">Редактировать профиль</h2>
-            <form class="popup__forma-profile">
+            <form name="profile" class="popup__forma">
                 <input 
                 type="text" 
                 placeholder="Введите имя" 
                 value=""
                 minlength="4" 
                 maxlength="15" 
-                class="popup__imput-profile popup__imput-profile_name">
+                class="popup__input popup__input_name">
                 <input 
                 type="text" 
                 placeholder="Чем занимаетесь?" 
                 minlength="4" 
                 maxlength="15" 
-                class="popup__imput-profile popup__imput-profile_prof">
+                class="popup__input popup__input_prof">
+                <button type="submit" class="popup__btn-save-profile">Сохранить</button>
             </form>
-            <button type="submit" class="popup__btn-save-profile">Сохранить</button>
-        </section>
     </div>
 </div>
-
+<script async src="./scripts/index.js"></script>
 </body>
 </html>
