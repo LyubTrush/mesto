@@ -1,4 +1,5 @@
 !function(e){"function"!=typeof e.matches&&(e.matches=e.msMatchesSelector||e.mozMatchesSelector||e.webkitMatchesSelector||function(e){for(var t=this,o=(t.document||t.ownerDocument).querySelectorAll(e),n=0;o[n]&&o[n]!==t;)++n;return Boolean(o[n])}),"function"!=typeof e.closest&&(e.closest=function(e){for(var t=this;t&&1===t.nodeType;){if(t.matches(e))return t;t=t.parentNode}return null})}(window.Element.prototype);
+
 const openPopupProfile = document.querySelector('.profile__button-edit');
 const closePopup = document.querySelectorAll('.popup__btn-close');
 const popupProfile = document.querySelector('.popup__profile');
@@ -7,6 +8,7 @@ const namePopupInput = formaPopup.querySelector('.popup__input_type_name');
 const profPopupInput = formaPopup.querySelector('.popup__input_type_prof');
 const nameProfile = document.querySelector('.profile__info-title');
 const profProfile = document.querySelector('.profile__info-subtitle');
+
 const popupImgView = document.querySelector('.popup_img_view');
 
 console.log(popupImgView)
@@ -39,8 +41,6 @@ function save(evt) {
 
 formaPopup.addEventListener( 'submit', save);
 
-
-//спринт 5
 //1. 6 карточек из коробки
 const initialCards = [
     {
@@ -137,6 +137,4 @@ const initialCards = [
 
 
 
-  //3. удаление карточки
-  //4.открытие попапа с картинкой
-  //5.плавное открытие и закрытие попапов
+  

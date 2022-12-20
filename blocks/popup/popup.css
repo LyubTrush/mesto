@@ -5,9 +5,11 @@
     left: 0;
     top: 0;
     background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
     z-index: 2;
-    display: none;
     align-items: center;
     justify-content: center;
-    
+    visibility: hidden;
+    transition: ease-in 0.4s;
+    opacity: 0;
 }
