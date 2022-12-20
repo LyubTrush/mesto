@@ -9,7 +9,7 @@ const profPopupInput = formaPopup.querySelector('.popup__input_type_prof');
 const nameProfile = document.querySelector('.profile__info-title');
 const profProfile = document.querySelector('.profile__info-subtitle');
 
-const popupImgView = document.querySelector('.popup_img_view');
+const popupImgView = document.querySelector('.popup__img-view');
 
 console.log(popupImgView)
 
