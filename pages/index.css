@@ -49,6 +49,7 @@
 @import url(../blocks/popup/__figure/popup__figure.css);
 @import url(../blocks/popup/__caption/popup__caption.css);
 @import url(../blocks/popup/_img-view/popup_img-view.css);
-@import url(../blocks/popup/__profile/popup__profile.css);
+@import url(../blocks/popup/_profile/popup_profile.css);
+@import url(../blocks/popup/_add/popup_add.css);
 
 

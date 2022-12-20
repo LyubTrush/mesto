@@ -127,7 +127,7 @@ const initialCards = [
 
   // форма открытия popup
   const openPopupAdd = document.querySelector('.profile__button-add');
-  const popupAdd = document.querySelector('.popup__add');
+  const popupAdd = document.querySelector('.popup_add');
   const formaPopupAdd = popupAdd.querySelector('.popup__forma');
 
   openPopupAdd.addEventListener('click', function() {
