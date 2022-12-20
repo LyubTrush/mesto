@@ -2,14 +2,14 @@
 
 const openPopupProfile = document.querySelector('.profile__button-edit');
 const closePopup = document.querySelectorAll('.popup__btn-close');
-const popupProfile = document.querySelector('.popup__profile');
+const popupProfile = document.querySelector('.popup_profile');
 const formaPopup = popupProfile.querySelector('.popup__forma');
 const namePopupInput = formaPopup.querySelector('.popup__input_type_name');
 const profPopupInput = formaPopup.querySelector('.popup__input_type_prof');
 const nameProfile = document.querySelector('.profile__info-title');
 const profProfile = document.querySelector('.profile__info-subtitle');
 
-const popupImgView = document.querySelector('.popup__img-view');
+const popupImgView = document.querySelector('.popup_img-view');
 
 console.log(popupImgView)
 
