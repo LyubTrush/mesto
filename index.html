@@ -28,7 +28,7 @@
       </section>
 
       <section class="elements">
-        <div class="element">
+        <!--<div class="element">
             <img class="element__img" src="./images/karachaevo_el.png" alt="фото природы">
             <div class="element__info">
                 <h2 class="element__info-text">Карачаевск</h2>
@@ -69,13 +69,13 @@
                 <h2 class="element__info-text">Карачаево-Черкессия</h2>
                 <button type="button" class="element__info-heart"></button>
             </div>
-        </div>
+        </div> -->
       </section>
     </main>
     <footer class="footer">
         <p class="footer__text">&copy; 2020 Mesto Russia</p>
     </footer>
-<div class="popup">
+<div class="popup popup__profile">
     <div class="popup__container">
             <button type="button" class="popup__btn-close"></button>
             <h2 class="popup__text-profile">Редактировать профиль</h2>
@@ -99,6 +99,39 @@
             </form>
     </div>
 </div>
+<div class="popup popup__add">
+    <div class="popup__container">
+            <button type="button" class="popup__btn-close"></button>
+            <h2 class="popup__text-profile">Новое место</h2>
+            <form name="profile" class="popup__forma popup__forma-add">
+                <input 
+                type="text" 
+                placeholder="Название" 
+                id=""
+                value=""
+                minlength="4" 
+                maxlength="15" 
+                class="popup__input popup__input_add_name">
+                <input 
+                type="text" 
+                id=""
+                placeholder="Ссылка на картинку" 
+                minlength="4" 
+                class="popup__input popup__input_add_link">
+                <button type="submit" class="popup__btn-save-profile">Создать</button>
+            </form>
+    </div>
+</div>
+<template id="template-element">
+    <div class="element">
+      <img class="element__img">
+      <button class="element__delete"></button>
+      <div class="element__info">
+        <h2 class="element__info-text"></h2>
+        <button type="button" class="element__info-heart"></button>
+      </div>
+    </div>`
+</template>
 <script async src="./scripts/index.js"></script>
 </body>
 </html>
