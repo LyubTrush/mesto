@@ -15,11 +15,10 @@ const formAdd = document.querySelector(".popup__forma-add");
 const inputAddName = formAdd.querySelector(".popup__input_add_name");
 const inputAddLink = formAdd.querySelector(".popup__input_add_link");
 // переменные для формы открытия popupAdd
-const PopupAddOpen = document.querySelector(".profile__button-add");
+const popupAddOpen = document.querySelector(".profile__button-add");
 const popupAdd = document.querySelector(".popup_add");
 const formPopupAdd = popupAdd.querySelector(".popup__forma");
 //находим контейнер elements
-const cardsContainer = document.querySelector(".elements");
 const templateElement = document.querySelector("#template-element");
 
 // функции
@@ -43,20 +42,13 @@ function savePopupProfile(popup) {
   closePopup(popup);
 }
 
-
-//PopupProfileOpen.addEventListener("click", openPopap(popup));
-  //namePopupInput.value = nameProfile.textContent;
-  //profPopupInput.value = profProfile.textContent;
-//);
-
-
-
 //форма для элементов и удаление элемента и работа элементов карточки
 const createCard = (link, name) => {
   const elementCard = templateElement.content
     .querySelector(".element")
     .cloneNode(true);
-  elementCard.querySelector(".element__img").src = link;
+  const elementImg = elementCard.querySelector(".element__img");
+  elementImg.src = link;
   elementCard.querySelector(".element__info-text").textContent = name;
 
   //работа кнопки delete
@@ -74,7 +66,6 @@ const createCard = (link, name) => {
     });
 
   //oткрытие image
-  const elementImg = elementCard.querySelector(".element__img");
   elementImg.addEventListener("click", function () {
     popupImgView.classList.add("popup_opened");
     popupImgView.querySelector(".popup__image").src = link;
@@ -82,36 +73,41 @@ const createCard = (link, name) => {
   });
 
   return elementCard;
+
 };
 
 //функция которая добавляет в контейнер cardsContainer элементы html
 const renderCard = (link, name) => {
+  const cardsContainer = document.querySelector(".elements");
   cardsContainer.prepend(createCard(link, name));
 };
-
 
 //перебор элементов массива методом forEach
 initialCards.forEach((val, i) => {
   renderCard(val.link, val.name);
 });
 
-
 //функция сохранения данных
 const saveAdd = (event) => {
   event.preventDefault();
-  //nameAdd.textContent = inputAddName.value;
-  //imgAdd.src = inputAddLink.value;
   renderCard(inputAddLink.value, inputAddName.value);
   inputAddLink.value = "";
   inputAddName.value = "";
   closePopup(event);
 };
 
+const openPopapProfile = (popup) => {
+  popup.preventDefault();
+  namePopupInput.value = nameProfile.textContent;
+  profPopupInput.value = profProfile.textContent;
+  openPopup(popup);
+}
+
 //события
 //события на кнопку открытия popup
-PopupAddOpen.addEventListener("click", openPopup);
-PopupProfileOpen.addEventListener("click", openPopup);
-
+popupAddOpen.addEventListener("click", openPopup);
+PopupProfileOpen.addEventListener('click', openPopapProfile);
+  
 //закрытие всех popup по клику на крестик
 ButtonsPopupClose.forEach(function (popup) {
   popup.addEventListener("click", closePopup);
