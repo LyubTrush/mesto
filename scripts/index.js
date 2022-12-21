@@ -1,4 +1,5 @@
-
+// переменные
+// переменные для формы открытия popupProfile
 const PopupProfileOpen = document.querySelector(".profile__button-edit");
 const ButtonsPopupClose = document.querySelectorAll(".popup__btn-close");
 const popupProfile = document.querySelector(".popup_profile");
@@ -7,43 +8,50 @@ const namePopupInput = formPopup.querySelector(".popup__input_type_name");
 const profPopupInput = formPopup.querySelector(".popup__input_type_prof");
 const nameProfile = document.querySelector(".profile__info-title");
 const profProfile = document.querySelector(".profile__info-subtitle");
+// переменные для формы открытия popupImage
 const popupImgView = document.querySelector(".popup_img-view");
-
-
-PopupProfileOpen.addEventListener("click", function () {
-  popupProfile.classList.add("popup_opened");
-  namePopupInput.value = nameProfile.textContent;
-  profPopupInput.value = profProfile.textContent;
-});
-
-function close() {
-  popupProfile.classList.remove("popup_opened");
-  popupAdd.classList.remove("popup_opened");
-}
-
-//закрытие всех popup по клику на крестик
-ButtonsPopupClose.forEach(function (popup) {
-  popup.addEventListener("click", function (e) {
-    const parentModal = this.closest(".popup"); //используем микробиблиотеку closest
-    parentModal.classList.remove("popup_opened");
-  });
-}); // end foreach
-function savePopup(popup) {
-  popup.preventDefault();
-  nameProfile.textContent = namePopupInput.value;
-  profProfile.textContent = profPopupInput.value;
-  close();
-}
-
-formPopup.addEventListener("submit", savePopup);
-
-//1. 6 карточек из коробки
-
+// найдем input для ввода данных
+const formAdd = document.querySelector(".popup__forma-add");
+const inputAddName = formAdd.querySelector(".popup__input_add_name");
+const inputAddLink = formAdd.querySelector(".popup__input_add_link");
+// переменные для формы открытия popupAdd
+const PopupAddOpen = document.querySelector(".profile__button-add");
+const popupAdd = document.querySelector(".popup_add");
+const formPopupAdd = popupAdd.querySelector(".popup__forma");
 //находим контейнер elements
 const cardsContainer = document.querySelector(".elements");
 const templateElement = document.querySelector("#template-element");
 
-//создаем форму для элементов и удаление элемента
+// функции
+// функция для открытия всех popup
+function openPopup(event) {
+  if (event.target.className === 'profile__button-add') popupAdd.classList.add("popup_opened")
+  else if (event.target.className === 'profile__button-edit') popupProfile.classList.add("popup_opened")
+}
+
+// функция для закрытия popup
+function closePopup(popup) {
+  const parentModal = popup.target.closest(".popup"); //используем микробиблиотеку closest
+  parentModal.classList.remove("popup_opened");
+}
+
+//сохранение данных из формы и закрытие
+function savePopupProfile(popup) {
+  popup.preventDefault();
+  nameProfile.textContent = namePopupInput.value;
+  profProfile.textContent = profPopupInput.value;
+  closePopup(popup);
+}
+
+
+//PopupProfileOpen.addEventListener("click", openPopap(popup));
+  //namePopupInput.value = nameProfile.textContent;
+  //profPopupInput.value = profProfile.textContent;
+//);
+
+
+
+//форма для элементов и удаление элемента и работа элементов карточки
 const createCard = (link, name) => {
   const elementCard = templateElement.content
     .querySelector(".element")
@@ -72,6 +80,7 @@ const createCard = (link, name) => {
     popupImgView.querySelector(".popup__image").src = link;
     popupImgView.querySelector(".popup__caption").textContent = name;
   });
+
   return elementCard;
 };
 
@@ -79,15 +88,13 @@ const createCard = (link, name) => {
 const renderCard = (link, name) => {
   cardsContainer.prepend(createCard(link, name));
 };
+
+
 //перебор элементов массива методом forEach
 initialCards.forEach((val, i) => {
   renderCard(val.link, val.name);
 });
 
-//найдем input для ввода данных
-const formaAdd = document.querySelector(".popup__forma-add");
-const inputAddName = formaAdd.querySelector(".popup__input_add_name");
-const inputAddLink = formaAdd.querySelector(".popup__input_add_link");
 
 //функция сохранения данных
 const saveAdd = (event) => {
@@ -97,15 +104,24 @@ const saveAdd = (event) => {
   renderCard(inputAddLink.value, inputAddName.value);
   inputAddLink.value = "";
   inputAddName.value = "";
-  close();
+  closePopup(event);
 };
-formaAdd.addEventListener("submit", saveAdd);
 
-// форма открытия popup
-const PopupAddOpen = document.querySelector(".profile__button-add");
-const popupAdd = document.querySelector(".popup_add");
-const formPopupAdd = popupAdd.querySelector(".popup__forma");
+//события
+//события на кнопку открытия popup
+PopupAddOpen.addEventListener("click", openPopup);
+PopupProfileOpen.addEventListener("click", openPopup);
 
-PopupAddOpen.addEventListener("click", function () {
-  popupAdd.classList.add("popup_opened");
-});
+//закрытие всех popup по клику на крестик
+ButtonsPopupClose.forEach(function (popup) {
+  popup.addEventListener("click", closePopup);
+}); 
+
+//события на отправку формы
+formPopup.addEventListener("submit", savePopupProfile);
+
+formAdd.addEventListener("submit", saveAdd);
+
+
+
+
