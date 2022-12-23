@@ -1,13 +1,13 @@
 // переменные
 // переменные для формы открытия popupProfile
-const PopupProfileOpen = document.querySelector(".profile__button-edit");
-const ButtonsPopupClose = document.querySelectorAll(".popup__btn-close");
+const popupProfileOpen = document.querySelector(".profile__button-edit");
+const buttonsPopupClose = document.querySelectorAll(".popup__btn-close");
 const popupProfile = document.querySelector(".popup_profile");
 const formPopup = popupProfile.querySelector(".popup__forma");
 const namePopupInput = formPopup.querySelector(".popup__input_type_name");
 const profPopupInput = formPopup.querySelector(".popup__input_type_prof");
 const nameProfile = document.querySelector(".profile__info-title");
-const profProfile = document.querySelector(".profile__info-subtitle");
+const infoProfile = document.querySelector(".profile__info-subtitle");
 // переменные для формы открытия popupImage
 const popupImgView = document.querySelector(".popup_img-view");
 // найдем input для ввода данных
@@ -20,28 +20,30 @@ const popupAdd = document.querySelector(".popup_add");
 const formPopupAdd = popupAdd.querySelector(".popup__forma");
 //находим контейнер elements
 const templateElement = document.querySelector("#template-element");
+//находим elements
+const cardsContainer = document.querySelector(".elements");
 
 // функции
 // функция для открытия всех popup
-function openPopup(event) {
-  if (event.target.className === 'profile__button-add') popupAdd.classList.add("popup_opened")
-  else if (event.target.className === 'profile__button-edit') popupProfile.classList.add("popup_opened")
+
+function openPopup(popup) {
+  popup.classList.add('popup_opened');
 }
 
 // функция для закрытия popup
 function closePopup(popup) {
-  const parentModal = popup.target.closest(".popup"); //используем микробиблиотеку closest
-  parentModal.classList.remove("popup_opened");
+  popup.classList.remove('popup_opened');
 }
 
 //сохранение данных из формы и закрытие
-function savePopupProfile(popup) {
+function handleSubmitFormProfileCard (popup) {
   popup.preventDefault();
   nameProfile.textContent = namePopupInput.value;
-  profProfile.textContent = profPopupInput.value;
-  closePopup(popup);
+  infoProfile.textContent = profPopupInput.value;
+  closePopup(popupProfile);
 }
 
+console.log(handleSubmitFormProfileCard)
 //форма для элементов и удаление элемента и работа элементов карточки
 const createCard = (link, name) => {
   const elementCard = templateElement.content
@@ -49,6 +51,7 @@ const createCard = (link, name) => {
     .cloneNode(true);
   const elementImg = elementCard.querySelector(".element__img");
   elementImg.src = link;
+  elementImg.alt = 'фото' + ' ' + name
   elementCard.querySelector(".element__info-text").textContent = name;
 
   //работа кнопки delete
@@ -67,7 +70,7 @@ const createCard = (link, name) => {
 
   //oткрытие image
   elementImg.addEventListener("click", function () {
-    popupImgView.classList.add("popup_opened");
+    openPopup(popupImgView);
     popupImgView.querySelector(".popup__image").src = link;
     popupImgView.querySelector(".popup__caption").textContent = name;
   });
@@ -78,7 +81,6 @@ const createCard = (link, name) => {
 
 //функция которая добавляет в контейнер cardsContainer элементы html
 const renderCard = (link, name) => {
-  const cardsContainer = document.querySelector(".elements");
   cardsContainer.prepend(createCard(link, name));
 };
 
@@ -88,35 +90,39 @@ initialCards.forEach((val, i) => {
 });
 
 //функция сохранения данных
-const saveAdd = (event) => {
+const handleSubmitFormAddCard = (event) => {
   event.preventDefault();
   renderCard(inputAddLink.value, inputAddName.value);
   inputAddLink.value = "";
   inputAddName.value = "";
-  closePopup(event);
+  closePopup(popupAdd);
 };
-
-const openPopapProfile = (popup) => {
-  popup.preventDefault();
-  namePopupInput.value = nameProfile.textContent;
-  profPopupInput.value = profProfile.textContent;
-  openPopup(popup);
-}
 
 //события
 //события на кнопку открытия popup
-popupAddOpen.addEventListener("click", openPopup);
-PopupProfileOpen.addEventListener('click', openPopapProfile);
+popupAddOpen.addEventListener("click", () => {
+  openPopup(popupAdd);
+});
+
+popupProfileOpen.addEventListener('click', () => {
+  namePopupInput.value = nameProfile.textContent;
+  profPopupInput.value = infoProfile.textContent;
+  openPopup(popupProfile);
+});
   
 //закрытие всех popup по клику на крестик
-ButtonsPopupClose.forEach(function (popup) {
-  popup.addEventListener("click", closePopup);
-}); 
+
+buttonsPopupClose.forEach(function(item) {
+    item.addEventListener('click', function (e) {
+       const parentModal = this.closest('.popup'); //используем микробиблиотеку closest
+       closePopup(parentModal);
+    });
+ });
 
 //события на отправку формы
-formPopup.addEventListener("submit", savePopupProfile);
+formPopup.addEventListener("submit", handleSubmitFormProfileCard);
 
-formAdd.addEventListener("submit", saveAdd);
+formAdd.addEventListener("submit", handleSubmitFormAddCard);
 
 
 
