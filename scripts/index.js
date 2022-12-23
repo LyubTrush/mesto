@@ -3,9 +3,9 @@
 const popupProfileOpen = document.querySelector(".profile__button-edit");
 const buttonsPopupClose = document.querySelectorAll(".popup__btn-close");
 const popupProfile = document.querySelector(".popup_profile");
-const formPopup = popupProfile.querySelector(".popup__forma");
-const namePopupInput = formPopup.querySelector(".popup__input_type_name");
-const profPopupInput = formPopup.querySelector(".popup__input_type_prof");
+const formPopupProfile = popupProfile.querySelector(".popup__forma");
+const namePopupInput = formPopupProfile.querySelector(".popup__input_type_name");
+const profPopupInput = formPopupProfile.querySelector(".popup__input_type_prof");
 const nameProfile = document.querySelector(".profile__info-title");
 const infoProfile = document.querySelector(".profile__info-subtitle");
 // переменные для формы открытия popupImage
@@ -36,8 +36,8 @@ function closePopup(popup) {
 }
 
 //сохранение данных из формы и закрытие
-function handleSubmitFormProfileCard (popup) {
-  popup.preventDefault();
+function handleSubmitFormProfileCard (event) {
+  event.preventDefault();
   nameProfile.textContent = namePopupInput.value;
   infoProfile.textContent = profPopupInput.value;
   closePopup(popupProfile);
@@ -71,8 +71,10 @@ const createCard = (link, name) => {
   //oткрытие image
   elementImg.addEventListener("click", function () {
     openPopup(popupImgView);
-    popupImgView.querySelector(".popup__image").src = link;
+    const elementImgView = popupImgView.querySelector(".popup__image");
     popupImgView.querySelector(".popup__caption").textContent = name;
+    elementImgView.src = link;
+    elementImgView.alt = 'фото' + ' ' + name;
   });
 
   return elementCard;
@@ -120,7 +122,7 @@ buttonsPopupClose.forEach(function(item) {
  });
 
 //события на отправку формы
-formPopup.addEventListener("submit", handleSubmitFormProfileCard);
+formPopupProfile.addEventListener("submit", handleSubmitFormProfileCard);
 
 formAdd.addEventListener("submit", handleSubmitFormAddCard);
 
