@@ -40,60 +40,71 @@
     <footer class="footer">
       <p class="footer__text">&copy; 2020 Mesto Russia</p>
     </footer>
+
+    <!--попап редактирования профиля-->
     <div class="popup popup_profile">
       <div class="popup__container">
         <button type="button" class="popup__btn-close"></button>
         <h2 class="popup__text-profile">Редактировать профиль</h2>
-        <form name="profile" class="popup__forma">
+        <form name="profile" class="popup__forma" novalidate>
           <input
             type="text"
             placeholder="Введите имя"
-            id="input-name"
+            id="username"
             value=""
-            minlength="4"
+            minlength="2"
+            maxlength="40"
             class="popup__input popup__input_type_name"
             required = "required"
           />
+          <span class="username-error popup__input-error"></span>
           <input
             type="text"
-            id="input-job"
+            id="job"
             placeholder="Чем занимаетесь?"
-            minlength="4"
+            minlength="2"
+            maxlength="200"
             class="popup__input popup__input_type_prof"
             required = "required"
           />
-          <button type="submit" class="popup__btn-save-profile">
-            Сохранить
-          </button>
+          <span class="job-error popup__input-error"></span>
+          <button type="submit" class="popup__btn-save">Сохранить</button>
         </form>
       </div>
     </div>
+
+    <!--попап добавления фото-->
     <div class="popup popup_add">
       <div class="popup__container">
         <button type="button" class="popup__btn-close"></button>
         <h2 class="popup__text-profile">Новое место</h2>
-        <form name="profile" class="popup__forma popup__forma-add">
+        <form name="profile" class="popup__forma popup__forma-add" novalidate>
           <input
             type="text"
             placeholder="Название"
             id="title"
             value=""
-            minlength="4"
+            minlength="2"
+            maxlength="30"
             class="popup__input popup__input_add_name"
             required 
           />
+          <span class="title-error popup__input-error"></span>
           <input
             type="url"
             id="link"
             placeholder="Ссылка на картинку"
-            minlength="4"
+            minlength="2"
             class="popup__input popup__input_add_link"
             required 
           />
-          <button type="submit" class="popup__btn-save-profile">Создать</button>
+          <span class="link-error popup__input-error"></span>
+          <button type="submit" class="popup__btn-save">Создать</button>
         </form>
       </div>
     </div>
+
+    <!--попап просмотра фото-->
     <div class="popup popup_img-view">
       <div class="popup__img-conteiner">
         <button type="button" class="popup__btn-close"></button>
@@ -119,6 +130,7 @@
       `
     </template>
     <script async src="./scripts/cards.js"></script>
+    <script src="./scripts/validate.js"></script>
     <script async src="./scripts/index.js"></script>
   </body>
 </html>
