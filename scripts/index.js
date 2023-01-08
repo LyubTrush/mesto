@@ -42,7 +42,8 @@ const cardsContainer = document.querySelector(".elements");
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
-  document.addEventListener('keydown', closePopupEsc)
+  enableValidation(validationConfig);
+  document.addEventListener('keydown', closePopupEsc);
 }
 
 // функция для закрытия popup 
@@ -158,5 +159,4 @@ formPopupProfile.addEventListener("submit", handleSubmitFormProfileCard);
 
 formAdd.addEventListener("submit", handleSubmitFormAddCard);
 
-//вызвали функцию вадации
-enableValidation(validationConfig);
+
