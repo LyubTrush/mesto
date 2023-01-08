@@ -42,7 +42,6 @@ const cardsContainer = document.querySelector(".elements");
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
-  enableValidation(validationConfig);
   document.addEventListener('keydown', closePopupEsc);
 }
 
@@ -60,6 +59,7 @@ popups.forEach((popup) => {
     }
   })
 })
+
 // закрытие по кнопке esc
 function closePopupEsc (evt) {
   if (evt.key === "Escape") {
@@ -68,7 +68,6 @@ function closePopupEsc (evt) {
   }
 }
 
-
 //сохранение данных из формы и закрытие
 function handleSubmitFormProfileCard (event) {
   event.preventDefault();
@@ -76,7 +75,6 @@ function handleSubmitFormProfileCard (event) {
   infoProfile.textContent = profPopupInput.value;
   closePopup(popupProfile);
 }
-
 
 //форма для элементов и удаление элемента и работа элементов карточки
 const createCard = (link, name) => {
@@ -137,11 +135,13 @@ const handleSubmitFormAddCard = (event) => {
 //события на кнопку открытия popup
 popupAddOpen.addEventListener("click", () => {
   openPopup(popupAdd);
+  enableValidation(validationConfig);
 });
 
 popupProfileOpen.addEventListener('click', () => {
   namePopupInput.value = nameProfile.textContent;
   profPopupInput.value = infoProfile.textContent;
+  enableValidation(validationConfig);
   openPopup(popupProfile);
 });
   
@@ -158,5 +158,6 @@ buttonsPopupClose.forEach(function(item) {
 formPopupProfile.addEventListener("submit", handleSubmitFormProfileCard);
 
 formAdd.addEventListener("submit", handleSubmitFormAddCard);
+
 
 

@@ -33,7 +33,7 @@ function checkInputValidity(formElement, inputElement, config) {
 function hasInvalidInput(inputList) {
   return inputList.some((inputElement) => !inputElement.validity.valid);
 }
-
+// функция делает неактивной кнопку или активной
 function toggleButtonState(inputList, buttonElement, config) {
   if (hasInvalidInput(inputList)) {
     buttonElement.classList.add(config.inactiveButtonClass);
