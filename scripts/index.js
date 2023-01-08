@@ -48,6 +48,7 @@ function openPopup(popup) {
 // функция для закрытия popup 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closePopupEsc)
 }
 
 // обработчик оверлея
@@ -61,13 +62,11 @@ popups.forEach((popup) => {
 // закрытие по кнопке esc
 function closePopupEsc (evt) {
   if (evt.key === "Escape") {
-  popups.forEach((popup) => {
-    if (popup.classList.contains('popup_opened')) {
-      closePopup(popup)
-    }
-  })
+    const popupOpened = document.querySelector('.popup_opened')
+    closePopup(popupOpened);
   }
 }
+
 
 //сохранение данных из формы и закрытие
 function handleSubmitFormProfileCard (event) {
