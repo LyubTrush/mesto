@@ -37,6 +37,8 @@ const templateElement = document.querySelector("#template-element");
 //находим elements
 const cardsContainer = document.querySelector(".elements");
 
+
+
 // функции
 // функция для открытия всех popup
 
@@ -131,17 +133,22 @@ const handleSubmitFormAddCard = (event) => {
   closePopup(popupAdd);
 };
 
+// функция сбрасывает кнопку субмита при открытии
+const buttonReset = (button) =>{
+  console.log(button)
+  button.classList.add('popup__btn-save_invalid')
+  button.disabled = true;
+}
 //события
 //события на кнопку открытия popup
 popupAddOpen.addEventListener("click", () => {
+  buttonReset(popupAdd.querySelector('.popup__btn-save'));  
   openPopup(popupAdd);
-  enableValidation(validationConfig);
 });
 
 popupProfileOpen.addEventListener('click', () => {
   namePopupInput.value = nameProfile.textContent;
   profPopupInput.value = infoProfile.textContent;
-  enableValidation(validationConfig);
   openPopup(popupProfile);
 });
   
@@ -159,5 +166,6 @@ formPopupProfile.addEventListener("submit", handleSubmitFormProfileCard);
 
 formAdd.addEventListener("submit", handleSubmitFormAddCard);
 
-
+//вызов функции валидации
+enableValidation(validationConfig);
 
