@@ -1,3 +1,5 @@
+ import { Card } from './card.js';
+ import { FormValidator} from './FormValidator.js';
 // переменные
 // Вынесем все необходимые для валидации элементы формы в обьект конфиг
 
@@ -21,6 +23,7 @@ const namePopupInput = formPopupProfile.querySelector(".popup__input_type_name")
 const profPopupInput = formPopupProfile.querySelector(".popup__input_type_prof");
 const nameProfile = document.querySelector(".profile__info-title");
 const infoProfile = document.querySelector(".profile__info-subtitle");
+
 // переменные для формы открытия popupImage
 const popupImgView = document.querySelector(".popup_img-view");
 const elementImgView = popupImgView.querySelector(".popup__image");
@@ -37,8 +40,6 @@ const templateElement = document.querySelector("#template-element");
 //находим elements
 const cardsContainer = document.querySelector(".elements");
 
-
-
 // функции
 // функция для открытия всех popup
 
@@ -52,7 +53,13 @@ function closePopup(popup) {
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', closePopupEsc)
 }
-
+// функция открытия фото
+function handleOpenImage(name, link) {
+  openPopup(popupImgView);
+    popupImgView.querySelector(".popup__caption").textContent = name;
+    elementImgView.src = link;
+    elementImgView.alt = 'фото' + ' ' + name;
+} 
 // обработчик оверлея
 popups.forEach((popup) => {
   popup.addEventListener('mousedown', (evt) => {
@@ -78,39 +85,12 @@ function handleSubmitFormProfileCard (event) {
   closePopup(popupProfile);
 }
 
-//форма для элементов и удаление элемента и работа элементов карточки
+//функция создает карточку
 const createCard = (link, name) => {
-  const elementCard = templateElement.content
-    .querySelector(".element")
-    .cloneNode(true);
-  const elementImg = elementCard.querySelector(".element__img");
-  elementImg.src = link;
-  elementImg.alt = 'фото' + ' ' + name
-  elementCard.querySelector(".element__info-text").textContent = name;
+  const elementCard = new Card(name, link, templateElement, handleOpenImage);
+  const element = elementCard.generateCard()
 
-  //работа кнопки delete
-  elementCard
-    .querySelector(".element__delete")
-    .addEventListener("click", () => {
-      elementCard.remove();
-    });
-
-  //работа лайка
-  elementCard
-    .querySelector(".element__info-heart")
-    .addEventListener("click", (event) => {
-      event.target.classList.toggle("element__info-heart_active");
-    });
-
-  //oткрытие image
-  elementImg.addEventListener("click", function () {
-    openPopup(popupImgView);
-    popupImgView.querySelector(".popup__caption").textContent = name;
-    elementImgView.src = link;
-    elementImgView.alt = 'фото' + ' ' + name;
-  });
-
-  return elementCard;
+  return element;
 
 };
 
@@ -167,5 +147,11 @@ formPopupProfile.addEventListener("submit", handleSubmitFormProfileCard);
 formAdd.addEventListener("submit", handleSubmitFormAddCard);
 
 //вызов функции валидации
-enableValidation(validationConfig);
+// форма профиля
+const validateFormsProfile = new FormValidator(validationConfig, formPopupProfile);
+validateFormsProfile.enableValidation();
+// форма добавления фото 
+const validateFormsAdd = new FormValidator(validationConfig, formAdd);
+validateFormsAdd.enableValidation();
+
 
