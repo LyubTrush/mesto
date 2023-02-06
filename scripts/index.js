@@ -1,4 +1,4 @@
- import { Card } from './card.js';
+ import { Card } from './Сard.js';
  import { FormValidator} from './FormValidator.js';
 // переменные
 // Вынесем все необходимые для валидации элементы формы в обьект конфиг
@@ -27,6 +27,8 @@ const infoProfile = document.querySelector(".profile__info-subtitle");
 // переменные для формы открытия popupImage
 const popupImgView = document.querySelector(".popup_img-view");
 const elementImgView = popupImgView.querySelector(".popup__image");
+const popupCaption = popupImgView.querySelector(".popup__caption");
+
 // найдем input для ввода данных
 const formAdd = document.querySelector(".popup__forma-add");
 const inputAddName = formAdd.querySelector(".popup__input_add_name");
@@ -56,7 +58,7 @@ function closePopup(popup) {
 // функция открытия фото
 function handleOpenImage(name, link) {
   openPopup(popupImgView);
-    popupImgView.querySelector(".popup__caption").textContent = name;
+    popupCaption.textContent = name;
     elementImgView.src = link;
     elementImgView.alt = 'фото' + ' ' + name;
 } 
@@ -108,25 +110,21 @@ initialCards.forEach((val) => {
 const handleSubmitFormAddCard = (event) => {
   event.preventDefault();
   renderCard(inputAddLink.value, inputAddName.value);
-  inputAddLink.value = "";
-  inputAddName.value = "";
+  formAdd.reset(); 
   closePopup(popupAdd);
 };
 
-// функция сбрасывает кнопку субмита при открытии
-const buttonReset = (button) =>{
-  console.log(button)
-  button.classList.add('popup__btn-save_invalid')
-  button.disabled = true;
-}
+
 //события
+
 //события на кнопку открытия popup
 popupAddOpen.addEventListener("click", () => {
-  buttonReset(popupAdd.querySelector('.popup__btn-save'));  
+  validateFormsAdd.toggleButtonState(); 
   openPopup(popupAdd);
 });
 
 popupProfileOpen.addEventListener('click', () => {
+  validateFormsProfile.toggleButtonState();
   namePopupInput.value = nameProfile.textContent;
   profPopupInput.value = infoProfile.textContent;
   openPopup(popupProfile);
@@ -150,6 +148,7 @@ formAdd.addEventListener("submit", handleSubmitFormAddCard);
 // форма профиля
 const validateFormsProfile = new FormValidator(validationConfig, formPopupProfile);
 validateFormsProfile.enableValidation();
+
 // форма добавления фото 
 const validateFormsAdd = new FormValidator(validationConfig, formAdd);
 validateFormsAdd.enableValidation();
