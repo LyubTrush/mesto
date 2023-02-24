@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Место - проект для ЯП</title>
+  </head>
+
+  <body class="page">
+    <header class="header">
+      <div class="header__logo"></div>
+    </header>
+    <main class="content">
+      <section class="profile">
+        <div class="profile__block">
+          <img
+            class="profile__avatar-image"
+            src="<%=require('./images/Avatar.png')%>"
+            alt="аватар"
+          />
+          <div class="profile__info">
+            <div class="profile__info-edit">
+              <h1 class="profile__info-title">Жак-Ив Кусто</h1>
+              <button
+                type="button"
+                aria-label="Редактировать профиль"
+                class="profile__button-edit"
+              ></button>
+            </div>
+            <p class="profile__info-subtitle">Исследователь океана</p>
+          </div>
+        </div>
+        <button type="button" class="profile__button-add"></button>
+      </section>
+
+      <section class="elements"></section>
+    </main>
+    <footer class="footer">
+      <p class="footer__text">&copy; 2020 Mesto Russia</p>
+    </footer>
+
+    <!--попап редактирования профиля-->
+    <div class="popup popup_profile">
+      <div class="popup__container">
+        <button type="button" class="popup__btn-close"></button>
+        <h2 class="popup__text-profile">Редактировать профиль</h2>
+        <form name="profile" class="popup__forma" novalidate>
+          <input
+            type="text"
+            placeholder="Введите имя"
+            id="username"
+            value=""
+            minlength="2"
+            maxlength="40"
+            class="popup__input popup__input_type_name"
+            required = "required"
+          />
+          <span class="username-error popup__input-error"></span>
+          <input
+            type="text"
+            id="job"
+            placeholder="Чем занимаетесь?"
+            minlength="2"
+            maxlength="200"
+            class="popup__input popup__input_type_prof"
+            required = "required"
+          />
+          <span class="job-error popup__input-error"></span>
+          <button type="submit" class="popup__btn-save">Сохранить</button>
+        </form>
+      </div>
+    </div>
+
+    <!--попап добавления фото-->
+    <div class="popup popup_add">
+      <div class="popup__container">
+        <button type="button" class="popup__btn-close"></button>
+        <h2 class="popup__text-profile">Новое место</h2>
+        <form name="card" class="popup__forma popup__forma-add" novalidate>
+          <input
+            type="text"
+            placeholder="Название"
+            id="title"
+            value=""
+            minlength="2"
+            maxlength="30"
+            class="popup__input popup__input_add_name"
+            required 
+          />
+          <span class="title-error popup__input-error"></span>
+          <input
+            type="url"
+            id="link"
+            placeholder="Ссылка на картинку"
+            minlength="2"
+            class="popup__input popup__input_add_link"
+            required 
+          />
+          <span class="link-error popup__input-error"></span>
+          <button type="submit" class="popup__btn-save">Создать</button>
+        </form>
+      </div>
+    </div>
+
+    <!--попап просмотра фото-->
+    <div class="popup popup_img-view">
+      <div class="popup__img-conteiner">
+        <button type="button" class="popup__btn-close"></button>
+        <figure class="popup__figure">
+          <img
+            class="popup__image"
+            src="https://images.unsplash.com/photo-1612470858098-500d3550778e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1268&q=80"
+            alt="alt"
+          />
+          <figcaption class="popup__caption">caption</figcaption>
+        </figure>
+      </div>
+    </div>
+    <template id="template-element">
+      <div class="element">
+        <img class="element__img" />
+        <button class="element__delete"></button>
+        <div class="element__info">
+          <h2 class="element__info-text"></h2>
+          <button type="button" class="element__info-heart"></button>
+        </div>
+      </div>
+    </template>
+  </body>
+</html>
