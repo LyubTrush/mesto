@@ -1,57 +1,27 @@
-import { Card } from "../scripts/Сard.js";
-import { FormValidator } from "../scripts/FormValidator.js";
-import Section from "../scripts/Section.js";
-import UserInfo from "../scripts/UserInfo.js";
-import PopupWithForm from "../scripts/PopupWithForm.js";
-import PopupWithImage from "../scripts/PopupWithImage.js";
-import initialCards from "../scripts/cards.js";
+import { Card } from "../components/Сard.js";
+import { FormValidator } from "../components/FormValidator.js";
+import Section from "../components/Section.js";
+import UserInfo from "../components/UserInfo.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import PopupWithImage from "../components/PopupWithImage.js";
+import initialCards from "../utils/cards.js";
 import './index.css';
 
-// переменные
-// Вынесем все необходимые для валидации элементы формы в обьект конфиг
-
-const validationConfig = {
-  formSelector: ".popup__forma",
-  inputSelector: ".popup__input",
-  submitButtonSelector: ".popup__btn-save",
-  activeButtonClass: "popup__btn-save_valid",
-  inactiveButtonClass: "popup__btn-save_invalid",
-  inputErrorClass: "popup__input_type_error",
-  errorClass: "popup__input-error_visible",
-};
-
-// переменные для формы открытия popupProfile
-const popupProfileOpen = document.querySelector(".profile__button-edit");
-const popups = document.querySelectorAll(".popup");
-const buttonsPopupClose = document.querySelectorAll(".popup__btn-close");
-const popupProfile = document.querySelector(".popup_profile");
-const formPopupProfile = popupProfile.querySelector(".popup__forma");
-const namePopupInput = formPopupProfile.querySelector(
-  ".popup__input_type_name"
-);
-const profPopupInput = formPopupProfile.querySelector(
-  ".popup__input_type_prof"
-);
-const nameProfile = document.querySelector(".profile__info-title");
-const infoProfile = document.querySelector(".profile__info-subtitle");
-
-// переменные для формы открытия popupImage
-const popupImgView = document.querySelector(".popup_img-view");
-const elementImgView = popupImgView.querySelector(".popup__image");
-const popupCaption = popupImgView.querySelector(".popup__caption");
-
-// найдем input для ввода данных
-const formAdd = document.querySelector(".popup__forma-add");
-const inputAddName = formAdd.querySelector(".popup__input_add_name");
-const inputAddLink = formAdd.querySelector(".popup__input_add_link");
-// переменные для формы открытия popupAdd
-const popupAddOpen = document.querySelector(".profile__button-add");
-const popupAdd = document.querySelector(".popup_add");
-const formPopupAdd = popupAdd.querySelector(".popup__forma");
-//находим контейнер elements
-const templateElement = document.querySelector("#template-element");
-//находим elements
-const cardsContainer = document.querySelector(".elements");
+import {
+  validationConfig,
+  popupProfileOpen,
+  popupProfile,
+  formPopupProfile,
+  namePopupInput,
+  profPopupInput,
+  popupImgView,
+  formAdd,
+  inputAddName,
+  inputAddLink,
+  popupAddOpen,
+  popupAdd,
+  templateElement,
+} from "../utils/constants.js"
 
 //функция создает карточку
 const createCard = (link, name) => {
@@ -81,15 +51,14 @@ const userInfo = new UserInfo({
   nameUser: ".profile__info-title",
   jobUser: ".profile__info-subtitle",
 });
-console.log(userInfo.getUserInfo());
+
 //работа попапа редактирования профиля
 const popupUser = new PopupWithForm({
   selector: ".popup_profile",
-  handleFormSubmit: () => {
-    userInfo.setUserInfo(namePopupInput.value, profPopupInput.value);
+  handleFormSubmit: (input) => {
+    userInfo.setUserInfo(input.username, input.job);
 
-    //nameProfile.textContent = namePopupInput.value;
-    // infoProfile.textContent = profPopupInput.value;
+  
     popupUser.close();
   },
 });
@@ -99,17 +68,13 @@ popupUser.setEventListeners();
 //работа попапа добавления фото
 const popupCard = new PopupWithForm({
   selector: ".popup_add",
-  handleFormSubmit: () => {
-    //event.preventDefault();
-    cardsList.addItem(createCard(inputAddLink.value, inputAddName.value));
-    //cardsList.addItem(createCard(item.link, item.name));
+  handleFormSubmit: (input) => {
+    cardsList.addItem(createCard(input.link, input.title));
     popupCard.close();
   },
 });
 popupCard.setEventListeners();
-//renderCard(inputAddLink.value, inputAddName.value);
-//formAdd.reset();
-//popupCard.setEventListeners();
+
 
 // работа попап с фото
 const popupViewImage = new PopupWithImage(".popup_img-view");
@@ -121,7 +86,7 @@ popupViewImage.setEventListeners();
 //события на кнопку открытия popup
 popupAddOpen.addEventListener("click", () => {
   popupCard.open();
-  userInfo.getUserInfo();
+  validateFormsAdd.toggleButtonState();
 });
 
 popupProfileOpen.addEventListener("click", () => {
@@ -146,6 +111,25 @@ validateFormsProfile.enableValidation();
 // форма добавления фото
 const validateFormsAdd = new FormValidator(validationConfig, formAdd);
 validateFormsAdd.enableValidation();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Старый код
 
