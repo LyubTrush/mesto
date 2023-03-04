@@ -4,12 +4,17 @@
 
 export class Card {
   //принимает в конструктор её данные и селектор её template-элемента
-  constructor(name, link, templateElement, handleCardClick) {
+  constructor({item: {name, link, owner, _id, likes}, user, templateElement, handleCardClick, handleDelete, handleLikes}) {
     this._name = name;
     this._link = link;
+    this._owner = owner;
+    this._cardId = _id;
+    this._likes = likes;
+    this._curUser = user;
     this._templateElement = templateElement;
     this._handleCardClick = handleCardClick;
-
+    this._handleDelete = handleDelete;
+    this._handleLikes = handleLikes;
     //this._templateSelector = templateSelector;
   }
 
@@ -32,7 +37,14 @@ export class Card {
     this._element.querySelector(".element__info-text").textContent = this._name;
 
     this._likeButton = this._element.querySelector(".element__info-heart");
-    this._deleteButton = this._element.querySelector(".element__delete");
+    if (this._likes.some((like) => like._id === this._curUser)) this._likeButton.classList.add("element__info-heart_active");
+
+    this._likeCounter = this._element.querySelector(".element__like-count");    
+    this._likeCounter.textContent = this._likes.length
+
+    if (this._curUser === this._owner._id) { this._deleteButton = this._element.querySelector(".element__delete") }
+    else this._element.querySelector(".element__delete").remove();
+
     this._setListeners();
 
     return this._element;
@@ -41,12 +53,17 @@ export class Card {
   // Навешиваем слушатели
   _setListeners() {
     //delete
-    this._deleteButton.addEventListener("click", () => {
-      this._deleteCard();
-    });
+    if (this._deleteButton) { this._deleteButton.addEventListener("click", () => {
+      this._handleDelete(this);
+    }) };
     //like
     this._likeButton.addEventListener("click", () => {
-      this._likeCard();
+      if(this._likeButton.classList.contains("element__info-heart_active")) {
+        this._handleLikes(this._cardId, "del");   
+      } else  {
+        this._handleLikes(this._cardId, "set");
+      }
+     
     });
     //open image
     this._image.addEventListener("click", () => {
@@ -55,13 +72,20 @@ export class Card {
   }
 
   // Удаление карточки
-  _deleteCard() {
+  deleteCard() {
     this._element.remove();
     this._element = null;
   }
 
-  // Лайк карточки
-  _likeCard() {
+  getId() {
+    return this._cardId;
+  }
+
+  // Обработка лайков
+  setLikes(cardData) {
+    this._likes = cardData.likes;
+    this._likeCounter.textContent = this._likes.length;
     this._likeButton.classList.toggle("element__info-heart_active");
   }
+
 }

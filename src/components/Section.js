@@ -10,8 +10,8 @@ export default class Section {
     this._selector = document.querySelector(selector);
   }
   //Содержит публичный метод, который отвечает за отрисовку всех элементов. Отрисовка каждого отдельного элемента должна осуществляться функцией
-  rendererItems() {
-    this._items.forEach((item) => {
+  rendererItems(items) {
+    items.forEach((item) => {
       this._renderer(item);
     });
   }

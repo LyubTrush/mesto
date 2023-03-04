@@ -16,15 +16,14 @@ export default class PopupWithForm extends Popup {
     this._formPopup = this._popup.querySelector(".popup__forma");
     this._inputList = this._formPopup.querySelectorAll(".popup__input");
     this._buttonSave = this._formPopup.querySelector(".popup__btn-save");
+    this._btnSaveDefaultText = this._buttonSave.textContent;
   }
   //собирает данные всех полей формы.
   _getInputValues() {
     this._inputValues = {};
     this._inputList.forEach((input) => {
       this._inputValues[input.id] = input.value;
-      console.log("gdgf" + input.id + " " + input.value);
     });
-    console.log(this._inputValues);
     return this._inputValues;
   }
 
@@ -36,6 +35,12 @@ export default class PopupWithForm extends Popup {
       this._handleFormSubmit(this._getInputValues());
     });
   }
+
+  isLoading(flag) {
+    if (flag) {this._buttonSave.textContent = "Сохранение..."}
+    else {this._buttonSave.textContent = this._btnSaveDefaultText};
+  }
+
   //Перезаписывает родительский метод close, так как при закрытии попапа форма должна ещё и сбрасываться.
   close() {
     super.close();

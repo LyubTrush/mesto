@@ -10,6 +10,11 @@ const validationConfig = {
   errorClass: "popup__input-error_visible",
 };
 
+// переменная для смены аватара
+const popupAvatarOpen = document.querySelector(".profile__avatar-btn");
+const formAvatar = document.querySelector(".popup__forma-avatar");
+//const popupAvatar = document.querySelector(".popup_avatar")
+
 // переменные для формы открытия popupProfile
 const popupProfileOpen = document.querySelector(".profile__button-edit");
 const popupProfile = document.querySelector(".popup_profile");
@@ -36,8 +41,13 @@ const popupAdd = document.querySelector(".popup_add");
 //находим контейнер elements
 const templateElement = document.querySelector("#template-element");
 
+// переменная для кнопки удаления 
+const popupImageDelete = document.querySelector(".element__delete");
+
 export {
   validationConfig,
+  popupAvatarOpen,
+  popupImageDelete,
   popupProfileOpen,
   popupProfile,
   formPopupProfile,
@@ -50,6 +60,7 @@ export {
   popupAddOpen,
   popupAdd,
   templateElement,
+  formAvatar,
 };
 
 //const popups = document.querySelectorAll(".popup");

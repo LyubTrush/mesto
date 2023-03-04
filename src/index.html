@@ -19,6 +19,7 @@
             src="<%=require('./images/Avatar.png')%>"
             alt="аватар"
           />
+          <button class="profile__avatar-btn"></button>
           <div class="profile__info">
             <div class="profile__info-edit">
               <h1 class="profile__info-title">Жак-Ив Кусто</h1>
@@ -39,6 +40,25 @@
     <footer class="footer">
       <p class="footer__text">&copy; 2020 Mesto Russia</p>
     </footer>
+
+    <!--попап смены аватара-->
+    <div class="popup popup_avatar">
+      <div class="popup__container">
+        <button type="button" class="popup__btn-close"></button>
+        <h2 class="popup__text-profile">Обновить аватар</h2>
+        <form name="avatar" class="popup__forma popup__forma-avatar" novalidate>
+          <input 
+            type="url"
+            id="avatarLink"
+            placeholder="Ссылка на картинку"
+            minlength="2"
+            class="popup__input"
+            required />
+            <span class="avatarLink-error popup__input-error"></span>
+            <button type="submit" class="popup__btn-save">Сохранить</button>
+        </form>
+      </div>
+    </div>
 
     <!--попап редактирования профиля-->
     <div class="popup popup_profile">
@@ -103,6 +123,15 @@
       </div>
     </div>
 
+    <!--попап подтверждения удаления фото-->
+    <div class="popup popup_delete-photo">
+      <div class="popup__container">
+        <button type="button" class="popup__btn-close"></button>
+        <h2 class="popup__text-profile">Вы уверены?</h2>
+        <button type="submit" class="popup__btn-save popup__btn-yes">Да</button>
+      </div>
+    </div>
+    
     <!--попап просмотра фото-->
     <div class="popup popup_img-view">
       <div class="popup__img-conteiner">
@@ -123,7 +152,11 @@
         <button class="element__delete"></button>
         <div class="element__info">
           <h2 class="element__info-text"></h2>
-          <button type="button" class="element__info-heart"></button>
+          <div class="element__like-card">
+            <button type="button" class="element__info-heart"></button>
+            <span class="element__like-count">0</span>
+          </div>
+        
         </div>
       </div>
     </template>
