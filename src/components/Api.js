@@ -13,7 +13,7 @@ export default class Api {
   }
 
   //редактирование профиля
-  serProfileData(userData) {
+  setProfileData(userData) {
     return fetch(`${this._baseUrl}users/me`, {
       method: "PATCH",
       headers: this._headers,
