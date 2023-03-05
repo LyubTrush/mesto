@@ -19,4 +19,8 @@ export default class Section {
   addItem(element) {
     this._selector.prepend(element);
   }
+
+  addItemServer(element) {
+    this._selector.append(element);
+  }
 }

@@ -5,11 +5,13 @@ export default class Api {
   }
 
   _processingServer(res) {
-    if (res.ok) {
-      return res.json();
-    } else {
-      return Promise.reject(`код ошибки: ${res.status}`);
-    }
+    return res.ok ? res.json() : Promise.reject(`код ошибки: ${res.status}`);
+
+    // if (res.ok) {
+    //   return res.json();
+    // } else {
+    //   return Promise.reject(`код ошибки: ${res.status}`);
+    // }
   }
 
   //редактирование профиля
